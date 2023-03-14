@@ -1,7 +1,7 @@
-# mapsTest
- Test Maps
+# MapsSDK_Country_Highlighter
 
-A Kotlin project that aims to create an interactive map of the world using the Maps SDK.
+
+A Kotlin project that aims to create an interactive map of the world using the Maps SDK and Google Maps API.
 
 It uses a list of country geojsons (files and list of files) which act as the overlay for each country, as to provide visual feedback to touching the corresponding country.
 
@@ -16,3 +16,5 @@ sdk.dir=C\:\\Users\\PDS12\\AppData\\Local\\Android\\Sdk
 
 MAPS_API_KEY=YOUR MAPS_API_KEY
 ```
+
+You can obtain your own api key here : https://developers.google.com/maps/documentation/javascript/get-api-key#console
