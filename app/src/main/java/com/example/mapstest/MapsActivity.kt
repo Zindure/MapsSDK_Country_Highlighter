@@ -108,8 +108,8 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback {
             val geocoder = Geocoder(this, Locale.getDefault())
             val addresses: List<Address> = geocoder.getFromLocation(it.latitude, it.longitude, 1) as List<Address>
             var country: String = ""
-            if (addresses.isNotEmpty() && addresses[0].countryName != null) {
-                country = addresses[0].countryName
+            if (addresses.isNotEmpty() && addresses[0].countryCode != null) {
+                country = addresses[0].countryCode
             }
 
             // Marker Information String
