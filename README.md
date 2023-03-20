@@ -12,7 +12,7 @@ This file contains the GeoJSON and the country code, both of which are necessary
 Notes : Please add local.properties file containing the following
 
 ```
-sdk.dir=C\:\\Users\\PDS12\\AppData\\Local\\Android\\Sdk
+sdk.dir=C\:\\Users\\YOUR_USER_NAME\\AppData\\Local\\Android\\Sdk
 
 MAPS_API_KEY=YOUR MAPS_API_KEY
 ```
