@@ -3,11 +3,11 @@
 
 A Kotlin project that aims to create an interactive map of the world using the Maps SDK and Google Maps API.
 
-It uses a list of country geojsons (files and list of files) which act as the overlay for each country, as to provide visual feedback to touching the corresponding country.
+It uses a list of country GeoJSON layers which act as the overlay for each country, as to provide visual and informational feedback to touching the corresponding country.
 
-It also pulls data from a database for each country, here represented by a file in development.
+It also pulls data from a CSV file for each country.
 
-
+This file contains the GeoJSON and the country code, both of which are necessary for the system to work, as well as supplementary data on any given country.
 
 Notes : Please add local.properties file containing the following
 
