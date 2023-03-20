@@ -2,18 +2,13 @@ package com.example.mapstest
 
 
 
-import android.content.Context
-
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.ImageAndVideo.toString
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.FragmentActivity
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -23,21 +18,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.maps.android.data.geojson.GeoJsonLayer
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-import org.json.JSONException
 import org.json.JSONObject
-import java.io.File
 
-import java.io.IOException
-import java.io.InputStream
-import java.net.URI
 import java.nio.file.*
-import java.nio.file.attribute.BasicFileAttributes
 import java.util.*
-import java.util.Objects.toString
 import kotlin.collections.ArrayList
-import kotlin.io.path.Path
 
 
 class MapsActivity : FragmentActivity(), OnMapReadyCallback {
@@ -63,29 +48,31 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback {
         mMap = googleMap
         mMap!!.uiSettings.isZoomControlsEnabled = true
 
-
+        //Map Style
         val success = googleMap.setMapStyle(
             MapStyleOptions.loadRawResourceStyle(
                 this, R.raw.style_json
             )
         )
-        val capitalCity = LatLng(40.416775, -3.70379)
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(capitalCity, 3f))
-
-        //var newLayer : GeoJsonLayer = GeoJsonLayer(mMap, R.raw.us_geojson, applicationContext)
-
+        
+        //Sets default location of map
+        val defaultFocus = LatLng(40.416775, -3.70379)
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultFocus, 3f))
+        
+        //Array of country GeoJSONs
         var layerArray  = ArrayList<GeoJsonLayer>()
-        var countryArray = arrayOf("United States", "Spain")
-
-
-        // read from CSV File that contains country geoJSONS and names
+        
+        //Reads from CSV File that contains country geoJSONS and names
         val file = applicationContext.assets.open("data.csv")
             .bufferedReader()
             .use { it.readText()}
         val countries = arrayListOf<List<String>>()
         val rows: List<List<String>> = csvReader().readAll(file)
         for (row in rows){
-            /*countries.add(listOf(row[0], row[4]))*/
+            /*The first column contains the GeoJSON and the second the country name, both of
+            which are functionally needed.
+            All further rows, can be used to store additional data on the given country
+            */
             countries.add(listOf(row[0], row[1], row[2]))
         }
 
@@ -150,9 +137,7 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback {
                     markerList.add(informationWindow)
                 }
                 informationWindow?.showInfoWindow()
-            } else { //newLayer.map = null }
-
-        }
+            }
 
     }
 
